@@ -30,3 +30,25 @@ class BaseOptimizer(ABC):
     def name(self) -> str:
         """Возвращает имя оптимизатора."""
         pass
+
+class GradientDescent(BaseOptimizer):
+    """Классический градиентный спуск."""
+
+    def step(self, gradient: np.ndarray, weights: np.ndarray) -> np.ndarray:
+        self.iteration += 1
+        return weights - self.learning_rate * gradient
+
+    @property
+    def name(self) -> str:
+        return "GradientDescent"
+
+class SGD(BaseOptimizer):
+    """Стохастический градиентный спуск."""
+
+    def step(self, gradient: np.ndarray, weights: np.ndarray) -> np.ndarray:
+        self.iteration += 1
+        return weights - self.learning_rate * gradient
+
+    @property
+    def name(self) -> str:
+        return "SGD"
